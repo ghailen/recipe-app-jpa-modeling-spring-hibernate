@@ -30,6 +30,8 @@ public class Recipe {
     private Set<Ingredient> ingredients;
     @Lob
     private Byte[] image;
+    @Enumerated(value = EnumType.STRING)
+    private Difficulty difficulty;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Notes notes;
