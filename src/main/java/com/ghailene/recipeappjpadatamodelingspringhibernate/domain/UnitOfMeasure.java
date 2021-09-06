@@ -5,27 +5,22 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.*;
-import java.math.BigDecimal;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Data
+@ToString
 @Entity
-public class Ingredient {
+public class UnitOfMeasure {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String description;
-    private BigDecimal amount;
-    @OneToOne(fetch = FetchType.EAGER)
-    private UnitOfMeasure uom;
-    //ingredient will have just one recipe
-    @ManyToOne
-    private Recipe recipe;
-
-
 
 }
