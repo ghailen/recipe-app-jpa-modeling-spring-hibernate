@@ -4,6 +4,9 @@ recipe note : -> one to one
 
 recipe category : -> many to many
 
+![image](https://user-images.githubusercontent.com/36199753/132381389-cd7207b8-e434-44c4-b092-94df59fa7375.png)
+
+
 recipe ingrédient : ->
 
 
