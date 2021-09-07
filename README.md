@@ -1,7 +1,9 @@
 # recipe-app-jpa-modeling-spring-hibernate
 
-recipe note : -> one to one
+recipe note : -> one to one 
+
 recipe category : -> many to many
+
 recipe ingrédient : ->
 ![image](https://user-images.githubusercontent.com/36199753/132381189-1408693b-47f6-47e3-a28d-ddfda65bba9d.png)
 
