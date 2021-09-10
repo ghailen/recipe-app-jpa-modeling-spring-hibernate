@@ -1,5 +1,7 @@
 package com.ghailene.recipeappjpadatamodelingspringhibernate.services;
 
+import com.ghailene.recipeappjpadatamodelingspringhibernate.converters.RecipeCommandToRecipe;
+import com.ghailene.recipeappjpadatamodelingspringhibernate.converters.RecipeToRecipeCommand;
 import com.ghailene.recipeappjpadatamodelingspringhibernate.domain.Recipe;
 import com.ghailene.recipeappjpadatamodelingspringhibernate.repositories.RecipeRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,15 +20,21 @@ import static org.junit.jupiter.api.Assertions.*;
 class RecipeServiceImplTest {
 
     RecipeServiceImpl recipeService;
+
     @Mock
     RecipeRepository recipeRepository;
 
+    @Mock
+    RecipeToRecipeCommand recipeToRecipeCommand;
+
+    @Mock
+    RecipeCommandToRecipe recipeCommandToRecipe;
 
     @BeforeEach
-    public void setUp() throws Exception{
+    public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        recipeService = new RecipeServiceImpl(recipeRepository);
 
+        recipeService = new RecipeServiceImpl(recipeRepository, recipeCommandToRecipe, recipeToRecipeCommand);
     }
 
 
@@ -41,8 +49,10 @@ class RecipeServiceImplTest {
 
 
         Set<Recipe> recipes = recipeService.getRecipes();
-        assertEquals(recipes.size(),1);
-        Mockito.verify(recipeRepository,Mockito.times(1)).findAll();
+        assertEquals(recipes.size(), 1);
+        Mockito.verify(recipeRepository, Mockito.times(1)).findAll();
+        Mockito.verify(recipeRepository, Mockito.never()).findById(Mockito.anyLong());
+
     }
 
     @Test
@@ -55,7 +65,7 @@ class RecipeServiceImplTest {
 
         Recipe recipeReturned = recipeService.findById(1L);
 
-       // assertNotNull("Null recipe returned", recipeReturned);
+        // assertNotNull("Null recipe returned", recipeReturned);
         Mockito.verify(recipeRepository, Mockito.times(1)).findById(Mockito.anyLong());
         Mockito.verify(recipeRepository, Mockito.never()).findAll();
     }
