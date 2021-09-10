@@ -69,4 +69,19 @@ class RecipeServiceImplTest {
         Mockito.verify(recipeRepository, Mockito.times(1)).findById(Mockito.anyLong());
         Mockito.verify(recipeRepository, Mockito.never()).findAll();
     }
+
+    @Test
+    public void testDeleteById() throws Exception {
+
+        //given
+        Long idToDelete = Long.valueOf(2L);
+
+        //when
+        recipeService.deleteById(idToDelete);
+
+        //no 'when', since method has void return type
+
+        //then
+        Mockito.verify(recipeRepository, Mockito.times(1)).deleteById(Mockito.anyLong());
+    }
 }
