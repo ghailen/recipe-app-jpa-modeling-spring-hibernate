@@ -9,7 +9,9 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
+import java.util.function.Supplier;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -41,5 +43,20 @@ class RecipeServiceImplTest {
         Set<Recipe> recipes = recipeService.getRecipes();
         assertEquals(recipes.size(),1);
         Mockito.verify(recipeRepository,Mockito.times(1)).findAll();
+    }
+
+    @Test
+    public void getRecipeByIdTest() throws Exception {
+        Recipe recipe = new Recipe();
+        recipe.setId(1L);
+        Optional<Recipe> recipeOptional = Optional.of(recipe);
+
+        Mockito.when(recipeRepository.findById(Mockito.anyLong())).thenReturn(recipeOptional);
+
+        Recipe recipeReturned = recipeService.findById(1L);
+
+       // assertNotNull("Null recipe returned", recipeReturned);
+        Mockito.verify(recipeRepository, Mockito.times(1)).findById(Mockito.anyLong());
+        Mockito.verify(recipeRepository, Mockito.never()).findAll();
     }
 }
