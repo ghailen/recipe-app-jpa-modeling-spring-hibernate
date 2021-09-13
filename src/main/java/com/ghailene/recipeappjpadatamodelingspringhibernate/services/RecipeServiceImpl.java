@@ -4,6 +4,7 @@ import com.ghailene.recipeappjpadatamodelingspringhibernate.commands.RecipeComma
 import com.ghailene.recipeappjpadatamodelingspringhibernate.converters.RecipeCommandToRecipe;
 import com.ghailene.recipeappjpadatamodelingspringhibernate.converters.RecipeToRecipeCommand;
 import com.ghailene.recipeappjpadatamodelingspringhibernate.domain.Recipe;
+import com.ghailene.recipeappjpadatamodelingspringhibernate.exceptions.NotFoundException;
 import com.ghailene.recipeappjpadatamodelingspringhibernate.repositories.RecipeRepository;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +40,7 @@ public class RecipeServiceImpl implements RecipeService {
         Optional<Recipe> recipeOptional = recipeRepository.findById(l);
 
         if (!recipeOptional.isPresent()) {
-            throw new RuntimeException("Recipe Not Found!");
+            throw new NotFoundException("Recipe Not Found!");
         }
 
         return recipeOptional.get();
