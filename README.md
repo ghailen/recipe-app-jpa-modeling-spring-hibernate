@@ -21,3 +21,7 @@ models:
 databe h2 : 
 ![image](https://user-images.githubusercontent.com/36199753/132380770-2c9413e1-c9fb-4f7b-899e-be745d2e98d8.png)
 
+
+add validation constraint : 
+![image](https://user-images.githubusercontent.com/36199753/133071152-9bafd793-dd96-42fa-a130-6692303131bd.png)
+
